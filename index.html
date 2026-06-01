@@ -24,10 +24,9 @@
     <li><a href="#p4">How It Works</a></li>
     <li><a href="#p7">Locations</a></li>
     <li><a href="#p8">Sign Up</a></li>
-    <li><a href="mailto:support@fresh-scent.com">Contact Us</a></li>
   </ul>
   <div class="nbtns">
-    <a href="mailto:support@fresh-scent.com" class="btn btn-ghost">Contact Us</a>
+    <a href="#" class="btn btn-ghost open-contact">Contact Us</a>
     <button class="btn btn-green" onclick="scrollTo('p8')">Sign Up — 25% Off</button>
   </div>
   <button class="nav-burger" id="navBurger" aria-label="Toggle menu" aria-expanded="false">
@@ -39,9 +38,8 @@
     <a href="#p4" class="nml" onclick="closeMobileNav()">How It Works</a>
     <a href="#p7" class="nml" onclick="closeMobileNav()">Locations</a>
     <a href="#p8" class="nml" onclick="closeMobileNav()">Sign Up</a>
-    <a href="mailto:support@fresh-scent.com" class="nml" onclick="closeMobileNav()">Contact Us</a>
     <div class="nml-btns">
-      <a href="mailto:support@fresh-scent.com" class="btn btn-ghost" onclick="closeMobileNav()">Contact Us</a>
+      <a href="#" class="btn btn-ghost open-contact" onclick="closeMobileNav()">Contact Us</a>
       <button class="btn btn-green" onclick="scrollTo('p8');closeMobileNav()">Sign Up — 25% Off</button>
     </div>
   </div>
@@ -407,7 +405,7 @@
         <h4>Customer Care</h4>
         <ul>
           <li><a href="#">Help Center</a></li>
-          <li><a href="#">Contact Us</a></li>
+          <li><a href="#" class="open-contact">Contact Us</a></li>
           <li><a href="#">FAQs</a></li>
           <li><a href="#">Track Order</a></li>
         </ul>
@@ -447,6 +445,79 @@
     </div>
   </footer>
 </section>
+
+<!-- ══ CLAIM MODAL ══ -->
+<div class="fs-modal-overlay" id="claimOverlay" role="dialog" aria-modal="true" aria-labelledby="claimModalTitle">
+  <div class="fs-modal">
+    <button class="fs-modal-close" id="claimClose" aria-label="Close">&times;</button>
+    <div class="fs-modal-badge">🎉 Limited Time Offer</div>
+    <h2 id="claimModalTitle" class="fs-modal-title">Claim Your <span>25% Off</span></h2>
+    <p class="fs-modal-sub">Fill in your details and we'll reach out to get you started at a discount.</p>
+    <form id="claimForm" novalidate>
+      <div class="fs-form-row">
+        <div class="fs-form-group">
+          <label for="claimFirst">First Name</label>
+          <input type="text" id="claimFirst" name="first" placeholder="Jane" required>
+        </div>
+        <div class="fs-form-group">
+          <label for="claimLast">Last Name</label>
+          <input type="text" id="claimLast" name="last" placeholder="Smith" required>
+        </div>
+      </div>
+      <div class="fs-form-group">
+        <label for="claimEmail">Email Address</label>
+        <input type="email" id="claimEmail" name="email" placeholder="jane@example.com" required>
+      </div>
+      <div class="fs-form-group">
+        <label for="claimPhone">Phone Number</label>
+        <input type="tel" id="claimPhone" name="phone" placeholder="(555) 000-0000">
+      </div>
+      <div class="fs-form-group">
+        <label for="claimZip">ZIP Code</label>
+        <input type="text" id="claimZip" name="zip" placeholder="90210">
+      </div>
+      <div class="fs-form-group">
+        <label for="claimMessage">Message (optional)</label>
+        <textarea id="claimMessage" name="message" placeholder="Anything you'd like us to know..." rows="3"></textarea>
+      </div>
+      <button type="submit" class="btn btn-gold btn-lg fs-form-submit">Claim My 25% Off &rarr;</button>
+    </form>
+  </div>
+</div>
+
+<!-- ══ CONTACT MODAL ══ -->
+<div class="fs-modal-overlay" id="contactOverlay" role="dialog" aria-modal="true" aria-labelledby="contactModalTitle">
+  <div class="fs-modal">
+    <button class="fs-modal-close" id="contactClose" aria-label="Close">&times;</button>
+    <h2 id="contactModalTitle" class="fs-modal-title">Get In Touch</h2>
+    <p class="fs-modal-sub">We'd love to hear from you. Send us a message and we'll respond within 24 hours.</p>
+    <form id="contactForm" novalidate>
+      <div class="fs-form-row">
+        <div class="fs-form-group">
+          <label for="contactFirst">First Name</label>
+          <input type="text" id="contactFirst" name="first" placeholder="Jane" required>
+        </div>
+        <div class="fs-form-group">
+          <label for="contactLast">Last Name</label>
+          <input type="text" id="contactLast" name="last" placeholder="Smith" required>
+        </div>
+      </div>
+      <div class="fs-form-group">
+        <label for="contactEmail">Email Address</label>
+        <input type="email" id="contactEmail" name="email" placeholder="jane@example.com" required>
+      </div>
+      <div class="fs-form-group">
+        <label for="contactSubject">Subject</label>
+        <input type="text" id="contactSubject" name="subject" placeholder="How can we help?">
+      </div>
+      <div class="fs-form-group">
+        <label for="contactMessage">Message</label>
+        <textarea id="contactMessage" name="message" placeholder="Tell us more..." rows="4" required></textarea>
+      </div>
+      <button type="submit" class="btn btn-green btn-lg fs-form-submit">Send Message &rarr;</button>
+    </form>
+  </div>
+</div>
 
 <script src="scripts.js"></script>
 </body>

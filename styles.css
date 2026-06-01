@@ -495,3 +495,66 @@ footer{padding:60px 80px 28px}
   .ft-top{grid-template-columns:1fr 1fr}
   .ft-bottom{flex-direction:column;align-items:flex-start}
 }
+
+/* ─── MODALS ──────────────────────────────────────────── */
+.fs-modal-overlay{
+  position:fixed;inset:0;z-index:9000;
+  background:rgba(10,20,14,.72);backdrop-filter:blur(6px);
+  display:flex;align-items:center;justify-content:center;
+  padding:20px;
+  opacity:0;pointer-events:none;
+  transition:opacity .25s;
+}
+.fs-modal-overlay.open{opacity:1;pointer-events:all}
+.fs-modal{
+  background:#fff;border-radius:20px;
+  padding:40px 36px;width:100%;max-width:480px;
+  position:relative;
+  transform:translateY(24px) scale(.97);
+  transition:transform .28s cubic-bezier(.22,1,.36,1);
+  max-height:90vh;overflow-y:auto;
+}
+.fs-modal-overlay.open .fs-modal{transform:none}
+.fs-modal-close{
+  position:absolute;top:14px;right:16px;
+  background:none;border:none;cursor:pointer;
+  font-size:1.5rem;color:#999;line-height:1;
+  width:32px;height:32px;display:flex;align-items:center;justify-content:center;
+  border-radius:50%;transition:all .18s;
+}
+.fs-modal-close:hover{background:#f0f0f0;color:#333}
+.fs-modal-badge{
+  display:inline-block;
+  background:linear-gradient(135deg,#fef3e2,#fde8c0);
+  color:#b86b00;font-size:.7rem;font-weight:700;
+  letter-spacing:.09em;text-transform:uppercase;
+  padding:4px 12px;border-radius:20px;margin-bottom:12px;
+}
+.fs-modal-title{
+  font-family:'Playfair Display',serif;
+  font-size:1.75rem;font-weight:700;
+  color:var(--navy);margin-bottom:8px;line-height:1.2;
+}
+.fs-modal-title span{color:var(--g)}
+.fs-modal-sub{font-size:.88rem;color:#666;margin-bottom:24px;line-height:1.6}
+.fs-form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.fs-form-group{display:flex;flex-direction:column;gap:5px;margin-bottom:14px}
+.fs-form-group label{font-size:.76rem;font-weight:600;color:#444;letter-spacing:.02em}
+.fs-form-group input,
+.fs-form-group textarea{
+  padding:11px 14px;
+  border:1.5px solid #e0e0e0;
+  border-radius:10px;
+  font-family:'DM Sans',sans-serif;
+  font-size:.9rem;color:#222;
+  outline:none;transition:border-color .18s,box-shadow .18s;
+  background:#fafafa;
+}
+.fs-form-group input:focus,
+.fs-form-group textarea:focus{border-color:var(--g);background:#fff;box-shadow:0 0 0 3px rgba(26,92,46,.08)}
+.fs-form-group textarea{resize:vertical;min-height:90px}
+.fs-form-submit{width:100%;justify-content:center;margin-top:8px}
+@media(max-width:480px){
+  .fs-modal{padding:28px 20px}
+  .fs-form-row{grid-template-columns:1fr}
+}

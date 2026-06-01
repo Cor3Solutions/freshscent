@@ -41,7 +41,84 @@ function closeMobileNav() {
   nav.classList.remove('nav-menu-open');
 }
 
-/* Sign-up CTA */
-document.getElementById('claimBtn').addEventListener('click', () => {
-  alert('Thank you! We will be in touch shortly.');
+/* ─── Modal helpers ──────────────────────────────────── */
+function openModal(id) {
+  document.getElementById(id).classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal(id) {
+  document.getElementById(id).classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.querySelectorAll('.fs-modal-overlay').forEach(overlay => {
+  overlay.addEventListener('click', e => {
+    if (e.target === overlay) closeModal(overlay.id);
+  });
+});
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    document.querySelectorAll('.fs-modal-overlay.open').forEach(o => closeModal(o.id));
+  }
+});
+
+/* ─── Claim modal ────────────────────────────────────── */
+document.getElementById('claimBtn').addEventListener('click', () => openModal('claimOverlay'));
+document.getElementById('claimClose').addEventListener('click', () => closeModal('claimOverlay'));
+
+document.getElementById('claimForm').addEventListener('submit', e => {
+  e.preventDefault();
+  const f = e.target;
+  const first = f.first.value.trim();
+  const last  = f.last.value.trim();
+  const email = f.email.value.trim();
+  const phone   = f.phone.value.trim();
+  const zip     = f.zip.value.trim();
+  const message = f.message.value.trim();
+  const body  = [
+    `First Name: ${first}`,
+    `Last Name: ${last}`,
+    `Email: ${email}`,
+    phone   ? `Phone: ${phone}`     : null,
+    zip     ? `ZIP Code: ${zip}`    : null,
+    message ? `\nMessage:\n${message}` : null,
+    '',
+    '-- Fresh-Scent 25% Off Claim Form --',
+  ].filter(l => l !== null).join('\n');
+  window.location.href =
+    `mailto:support@fresh-scent.com` +
+    `?subject=${encodeURIComponent('25% Off Claim — ' + first + ' ' + last)}` +
+    `&body=${encodeURIComponent(body)}`;
+});
+
+/* ─── Contact modal ──────────────────────────────────── */
+document.querySelectorAll('.open-contact').forEach(el => {
+  el.addEventListener('click', e => {
+    e.preventDefault();
+    closeMobileNav();
+    openModal('contactOverlay');
+  });
+});
+document.getElementById('contactClose').addEventListener('click', () => closeModal('contactOverlay'));
+
+document.getElementById('contactForm').addEventListener('submit', e => {
+  e.preventDefault();
+  const f       = e.target;
+  const first   = f.first.value.trim();
+  const last    = f.last.value.trim();
+  const email   = f.email.value.trim();
+  const subject = f.subject.value.trim() || 'Contact Form Inquiry';
+  const message = f.message.value.trim();
+  const body = [
+    `From: ${first} ${last}`,
+    `Email: ${email}`,
+    '',
+    message,
+    '',
+    '-- Fresh-Scent Contact Form --',
+  ].join('\n');
+  window.location.href =
+    `mailto:support@fresh-scent.com` +
+    `?subject=${encodeURIComponent(subject)}` +
+    `&body=${encodeURIComponent(body)}`;
 });
